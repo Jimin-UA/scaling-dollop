@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как помочь — Green-vector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --green-primary: #2e7d32;
+            --green-dark: #1b5e20;
+            --green-light: #e8f5e9;
+            --gray-text: #424242;
+            --white: #ffffff;
+            --gray-background: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--gray-text);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--gray-background);
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--green-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background-color: var(--green-dark);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            background-image: url('Помощь.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--green-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--green-primary);
+            border-radius: 2px;
+        }
+        
+        .help-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .help-card {
+            background-color: var(--gray-background);
+            border-radius: 12px;
+            padding: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .help-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--green-primary);
+            font-size: 1.8rem;
+        }
+
+        .help-card .icon {
+            font-size: 3rem;
+            color: var(--green-dark);
+            margin-bottom: 20px;
+        }
+        
+        .help-card p {
+            font-size: 1rem;
+            color: #757575;
+        }
+
+        .donate-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 35px;
+            background-color: var(--green-primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .donate-button:hover {
+            background-color: var(--green-dark);
+            transform: translateY(-3px);
+        }
+
+        .phone-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--green-dark);
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: var(--green-dark);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .footer-logo img {
+            height: 100px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--green-light);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="Монтажная область 12.png" alt="Логотип Green-vector">
+                </div>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="we.html">О нас</a></li>
+                        <li><a href="Initiative.html">Инициативы</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                        <li><a href="help.html">Как помочь</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Ваша помощь имеет значение.</h1>
+                <p>Ваша поддержка позволяет нам продолжать нашу миссию по созданию зелёного и справедливого будущего. Каждый вклад важен!</p>
+            </div>
+        </section>
+
+        <section id="help">
+            <div class="container">
+                <h2>Как вы можете помочь</h2>
+                <div class="help-options-grid">
+                    <div class="help-card">
+                        <div class="icon"><i class="fas fa-hand-holding-usd"></i></div>
+                        <h3>Материальная поддержка</h3>
+                        <p>Ваши пожертвования помогают нам финансировать наши инициативы, организовывать акции и распространять информацию. Мы обязуемся использовать каждый рубль с максимальной ответственностью, направляя средства на самые приоритетные проекты.</p>
+                        <p class="phone-number">Номер для перевода: +7 (XXX) XXX-XX-XX</p>
+                        <a href="#" class="donate-button">Перевести</a>
+                    </div>
+                    <div class="help-card">
+                        <div class="icon"><i class="fas fa-users-gear"></i></div>
+                        <h3>Физическое участие</h3>
+                        <p>Присоединяйтесь к нашей команде волонтёров! Ваша энергия и время — бесценный ресурс. Участвуйте в эко-субботниках, помогайте в организации митингов и распространяйте информацию в социальных сетях. Вместе мы — сила!</p>
+                        <a href="we.html" class="donate-button">Стать волонтёром</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="rose.png" alt="Роза Лютера">
+                </div>
+                <div class="footer-links">
+                    <p>
+                        <a href="we.html" style="color: var(--white); text-decoration: none;">О нас</a> | 
+                        <a href="#" style="color: var(--white); text-decoration: none;">Контакты</a> | 
+                        <a href="#" style="color: var(--white); text-decoration: none;">Политика конфиденциальности</a>
+                    </p>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 Green-vector. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>

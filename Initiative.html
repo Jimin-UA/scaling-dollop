@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инициативы — Green-vector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --green-primary: #2e7d32;
+            --green-dark: #1b5e20;
+            --green-light: #e8f5e9;
+            --gray-text: #424242;
+            --white: #ffffff;
+            --gray-background: #f5f5f5;
+            --blue-accent: #007bff;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--gray-text);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--gray-background);
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--green-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background-color: var(--green-dark);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            background-image: url('Инициативы.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--green-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--green-primary);
+            border-radius: 2px;
+        }
+
+        .initiative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .initiative-card {
+            background-color: var(--gray-background);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .initiative-card .icon {
+            font-size: 3.5rem;
+            color: var(--green-primary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        /* Анимации для иконок */
+        @keyframes scaleIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .initiative-card:hover .icon.grow {
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .initiative-card:hover .icon.pulse {
+            animation: pulse 1s infinite;
+        }
+
+        .initiative-card:hover .icon.bounce {
+            animation: bounce 1s;
+        }
+
+        .initiative-card:hover .icon.spin {
+            animation: spin 2s infinite linear;
+        }
+
+        .initiative-card:hover .icon.shake {
+            animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        .initiative-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--green-dark);
+        }
+
+        .initiative-card p {
+            font-size: 1rem;
+            color: #757575;
+        }
+
+        footer {
+            background-color: var(--green-dark);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .footer-logo img {
+            height: 100px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--green-light);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="Монтажная область 12.png" alt="Логотип Green-vector">
+                </div>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="we.html">О нас</a></li>
+                        <li><a href="Initiative.html">Инициативы</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                        <li><a href="help.html">Как помочь</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Наши инициативы.</h1>
+                <p>Мы предлагаем конкретные решения для создания более устойчивого и справедливого будущего. Каждая инициатива — это наш вклад в общее дело.</p>
+            </div>
+        </section>
+
+        <section id="initiatives">
+            <div class="container">
+                <h2>Наши предложения</h2>
+                <div class="initiative-grid">
+                    
+                    <div class="initiative-card">
+                        <div class="icon grow">🌱</div>
+                        <h3>Шоперы вместо пакетов</h3>
+                        <p>Мы предлагаем заменить пластиковые пакеты на стильные и многоразовые шоперы. Это не только забота о планете, но и новый элемент культуры — современный человек носит с собой не мусор, а сознательность.</p>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="icon grow">🌳</div>
+                        <h3>Озеленение</h3>
+                        <p>Каждый пустырь и серый угол может стать живым дыханием города. Мы выступаем за новые деревья, кусты и цветы там, где сейчас только асфальт. Город должен дышать вместе с людьми.</p>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="icon pulse">🏡</div>
+                        <h3>Зелёные уголки и мини-сады во дворах</h3>
+                        <p>Ваш двор — не парковка и не бетонная пустыня. Мы хотим превратить его в место силы, уюта и отдыха. Маленькие сады, лавочки и зелёные островки — территория для детей, соседей, общения и спокойствия.</p>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="icon spin">🚯</div>
+                        <h3>Борьба с пластиком</h3>
+                        <p>Одноразовый пластик — враг будущего. Мы выступаем за его ограничение и замену на биоразлагаемые материалы. Это шаг к чистым рекам, к здоровым животным и к городу без мусорных завалов.</p>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="icon bounce">🔋</div>
+                        <h3>Коробка для батареек и лампочек в каждый подъезд</h3>
+                        <p>Удобство — ключ к изменениям. Мы сделаем так, чтобы каждый мог сдать батарейку или лампу прямо у себя дома. Никаких токсинов в землю и воду — всё отправится на переработку.</p>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="icon shake">🗑</div>
+                        <h3>Сбор мусора и раздельная переработка</h3>
+                        <p>Не свалка, а вторая жизнь. Мы будем внедрять систему раздельного сбора мусора, чтобы пластик, стекло и бумага не уничтожали природу, а становились новым ресурсом. Это экономика будущего.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="rose.png" alt="Роза Лютера">
+                </div>
+                <div class="footer-links">
+                    <p>
+                        <a href="we.html" style="color: var(--white); text-decoration: none;">О нас</a> | 
+                        <a href="#" style="color: var(--white); text-decoration: none;">Контакты</a> | 
+                        <a href="#" style="color: var(--white); text-decoration: none;">Политика конфиденциальности</a>
+                    </p>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 Green-vector. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>

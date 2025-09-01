@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Манифест — Федерация матриархального права</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --background-color: #0F0F0F;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --accent-color: #007BFF;
+            --accent-hover: #0056b3;
+            --surface-color: #1A1A1A;
+            --border-color: #2C2C2C;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-primary);
+            background-color: var(--background-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: rgba(15, 15, 15, 0.8);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 40px;
+            filter: invert(1);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* --- Main Content --- */
+        main {
+            padding: 80px 0;
+        }
+
+        .manifesto-hero {
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+        .manifesto-hero h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+        
+        .manifesto-hero h1 .accent {
+            color: var(--accent-color);
+        }
+
+        .manifesto-hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+            text-align: left;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .manifesto-section {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .manifesto-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .manifesto-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .manifesto-list {
+                 grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .manifesto-list li {
+            position: relative;
+            padding-left: 35px;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .manifesto-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        /* --- Footer --- */
+        footer {
+            background-color: var(--surface-color);
+            color: var(--text-secondary);
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            filter: grayscale(100%) invert(70%);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+        
+        /* --- Animation --- */
+        .visible {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .visible.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <!-- Замените на ваше лого, возможно в формате SVG для лучшего качества -->
+                    <img src="Монтажная область 12.png" alt="Логотип">
+                </div>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="we.html">О нас</a></li>
+                        <li><a href="Initiative.html">Инициативы</a></li>
+                        <li><a href="news.html">Новости</a></li>
+                        <li><a href="help.html">Как помочь</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="manifesto-hero visible">
+                <h1>Манифест<span class="accent">.</span><br>Федерация матриархального права</h1>
+                <p>Настоящим манифестом мы утверждаем принципы обеспечения равенства и защиты прав женщин в обществе.</p>
+            </section>
+
+            <section id="patriarchy" class="visible">
+                <h2>Патриархат угнетает женщин</h2>
+                <div class="manifesto-section">
+                    <p>Патриархат — это не абстракция. Это система, которая на протяжении веков лишала женщин права голоса, образования, справедливой оплаты труда и свободы выбора. В знатных династиях дочерей убивали при рождении. До недавнего времени патриархат в Китае проявлялся через демографическую политику «Одна семья один ребенок». Закон, введенный в 1979 году, официально отменили только в 2015 году. Уже в 2013-м меры смягчили: китайские семьи могли завести второго ребенка, если первым родилась девочка. Подобные истории встречаются не только в Китае. В Индии до сих пор проводят аборты из-за предпочтения мальчиков, поскольку сын — «опора семьи», а дочь — «чужая». Аналогичные практики сохраняются в ряде мусульманских стран.</p>
+                </div>
+            </section>
+            
+            <section id="consequences" class="visible">
+                <h2>Последствия</h2>
+                <div class="manifesto-section">
+                    <ul class="manifesto-list">
+                        <li>Женщины получают меньше за ту же работу, что приводит к меньшей финансовой свободе.</li>
+                        <li>Усиливаются стереотипы о «правильной» роли женщины и мужчины.</li>
+                        <li>Медиа навязывают социальные нормы и идеалы.</li>
+                        <li>Давление стереотипов провоцирует стресс и низкую самооценку.</li>
+                        <li>Экономика теряет талантливых работников и идеи.</li>
+                        <li>Новые поколения усваивают патриархальные нормы, и цикл угнетения повторяется.</li>
+                        <li>Во многих странах отсутствуют законы о домашнем насилии.</li>
+                        <li>Насилие в доме считается «приватным», и многие женщины не могут уйти.</li>
+                        <li>Существует контроль за внешностью и одеждой.</li>
+                        <li>Женщин вычеркивают из учебников истории и науки.</li>
+                        <li>Женщинам редко дают места в парламентах.</li>
+                        <li>Патриархат калечит мужчин, которые «не соответствуют норме».</li>
+                        <li>Мужчины остаются без бытовых навыков.</li>
+                        <li>Отсутствие знаний о женской физиологии.</li>
+                        <li>Традиционное разделение профессий на «мужские» и «женские».</li>
+                        <li>Давление общества: «когда замуж?» для женщин, «добытчик» для мужчин.</li>
+                        <li>Эмоциональные рамки: женщины должны быть мягкими, мужчины — сдержанными.</li>
+                        <li>Ограничения свободы: поздний выход из дома может угрожать безопасности женщин.</li>
+                        <li>Сексуальные двойные стандарты: мужчина с множеством партнёров — «опытный», женщина — «распущенная».</li>
+                        <li>Дефицит нормальных отношений, недоверие, конкуренция и деградация семейных моделей.</li>
+                        <li>Алкоголь и насилие становятся «мужской нормой».</li>
+                        <li>Табу и стыд, связанные с менструацией и уходом за собой.</li>
+                        <li>Мужчины редко обращаются к психологам, боятся проявлять эмоции.</li>
+                        <li>Ограничение хобби и образования детей по гендерному признаку.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="solutions" class="visible">
+                <h2>Решения</h2>
+                <div class="manifesto-section">
+                    <ul class="manifesto-list">
+                        <li>Понимать и объяснять детям и близким: «женщина должна» и «мужчина должен» — это социальные установки, а не нормы.</li>
+                        <li>Не критиковать мужчин за уход за собой или творческую деятельность.</li>
+                        <li>Не осуждать женщин за карьеру, независимость и «мужские» увлечения.</li>
+                        <li>Обучать мальчиков и девочек выражать эмоции без стыда.</li>
+                        <li>Учить понимать чужие эмоции, уважать личные границы.</li>
+                        <li>Не сравнивать себя и других с чужими стандартами.</li>
+                        <li>Обучать финансовой грамотности.</li>
+                        <li>Показывать детям разнообразные модели женщин и мужчин.</li>
+                        <li>Учить бытовым навыкам вне зависимости от пола.</li>
+                        <li>Защищать тех, кто подвергается насилию или дискриминации.</li>
+                        <li>Разъяснять строение тела и сексуальное образование, включая согласие и личные границы.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="privileges" class="visible">
+                <h2>Привилегии сторонников</h2>
+                <div class="manifesto-section">
+                    <p>Респект и уважение, залог хорошего будущего!</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="rose.png" alt="Роза Лютера">
+                </div>
+                <div class="footer-links">
+                    <a href="we.html">О нас</a> | 
+                    <a href="#">Контакты</a> | 
+                    <a href="#">Политика конфиденциальности</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>&copy; 2025 Green-vector. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.visible');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

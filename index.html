@@ -4,52 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green-vector — За зелёное будущее для всех</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@600&display=swap" rel="stylesheet">
+    
+    <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         :root {
-            --green-primary: #2e7d32;
-            --green-dark: #1b5e20;
-            --green-light: #e8f5e9;
-            --gray-text: #424242;
-            --white: #ffffff;
-            --gray-background: #f5f5f5;
-            --blue-accent: #007bff;
+            /* Новая цветовая палитра */
+            --primary-dark-blue: #0A192F;
+            --primary-white: #FFFFFF;
+            --primary-light-gray: #F8F9FA;
+            --accent-green: #2E7D32;
+            --accent-green-hover: #1b5e20;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --border-color: #E5E7EB;
         }
 
+        /* Базовые стили */
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--gray-text);
-            background-color: var(--white);
+            color: var(--text-primary);
+            background-color: var(--primary-white);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-        
-        header {
-            background-color: var(--gray-background);
-            padding: 20px 0;
-            border-bottom: 1px solid #e0e0e0;
+
+        /* --- Шапка сайта (Header) --- */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: background-color 0.3s ease;
+            backdrop-filter: blur(8px);
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo img {
-            height: 60px;
+            height: 50px;
         }
 
         .nav-menu ul {
@@ -57,14 +70,17 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 25px;
+            gap: 32px;
         }
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--gray-text);
-            font-weight: 600;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
             position: relative;
+            padding-bottom: 8px;
             transition: color 0.3s ease;
         }
 
@@ -72,27 +88,31 @@
             content: '';
             position: absolute;
             left: 0;
-            bottom: -5px;
+            bottom: 0;
             width: 0;
             height: 2px;
-            background-color: var(--green-primary);
+            background-color: var(--accent-green);
             transition: width 0.3s ease;
         }
 
+        .nav-menu a:hover {
+            color: var(--accent-green);
+        }
+        
         .nav-menu a:hover::after {
             width: 100%;
         }
 
-        /* Hero section - новый для главной страницы */
+        /* --- Главный экран (Hero Section) --- */
         .hero {
-            background-color: var(--green-dark);
-            color: var(--white);
-            padding: 100px 0;
-            text-align: center;
+            color: var(--primary-white);
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: left;
             background-image: url('Полефермерское.png');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             position: relative;
         }
 
@@ -103,7 +123,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background: linear-gradient(90deg, rgba(10, 25, 47, 0.8) 0%, rgba(10, 25, 47, 0.4) 50%, rgba(10, 25, 47, 0) 100%);
         }
 
         .hero .container {
@@ -112,134 +132,191 @@
         }
 
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-family: 'Teko', sans-serif;
+            font-size: 6rem;
+            margin: 0;
+            line-height: 1;
+            font-weight: 600;
+            letter-spacing: 1px;
+            max-width: 800px;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 24px 0 40px;
+            line-height: 1.5;
         }
 
         .cta-button {
-            background-color: var(--white);
-            color: var(--green-primary);
-            padding: 15px 35px;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary-white);
+            color: var(--primary-dark-blue);
+            padding: 16px 40px;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 4px;
             font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-right: 16px;
+            border: 2px solid transparent;
         }
 
         .cta-button:hover {
-            background-color: var(--green-light);
-            transform: translateY(-3px);
+            background-color: transparent;
+            color: var(--primary-white);
+            border: 2px solid var(--primary-white);
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         
-        /* Общие стили для секций */
+        .cta-button.secondary {
+             background-color: transparent;
+             color: var(--primary-white);
+             border: 2px solid var(--primary-white);
+        }
+        
+        .cta-button.secondary:hover {
+            background-color: var(--primary-white);
+            color: var(--primary-dark-blue);
+        }
+
+        /* --- Общие стили для секций --- */
         section {
-            padding: 100px 0;
+            padding: 120px 0;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         section.visible {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        #values {
+            background-color: var(--primary-light-gray);
+        }
 
-        h2 {
-            font-family: 'Montserrat', sans-serif;
+        .section-header {
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 60px;
-            color: var(--green-dark);
-            position: relative;
-            display: inline-block;
+            margin-bottom: 80px;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -15px;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--green-primary);
-            border-radius: 2px;
+        .section-header h2 {
+            font-family: 'Teko', sans-serif;
+            font-size: 4rem;
+            margin: 0;
+            color: var(--primary-dark-blue);
+            letter-spacing: 1px;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 16px auto 0;
         }
 
+        /* --- Секция "Ценности" --- */
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            text-align: center;
         }
 
         .value-item {
             padding: 40px;
-            border-radius: 12px;
-            background-color: var(--green-light);
+            border: 1px solid var(--border-color);
+            background-color: var(--primary-white);
+            border-radius: 8px;
+            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
+        
         .value-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
         }
 
         .value-item .icon {
             font-size: 3rem;
-            color: var(--green-dark);
-            margin-bottom: 20px;
+            color: var(--accent-green);
+            margin-bottom: 24px;
         }
 
         .value-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--green-primary);
+            font-family: 'Teko', sans-serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin: 0 0 16px;
         }
-
+        
+        .value-item p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        /* --- Секция "Новости" --- */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
         .news-item {
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 25px;
-            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--primary-white);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
+        
         .news-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .news-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .news-item h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--green-dark);
+            font-family: 'Teko', sans-serif;
+            color: var(--text-primary);
             margin-top: 0;
-            font-size: 1.2rem;
+            font-size: 1.75rem;
+            line-height: 1.2;
+            flex-grow: 1;
+        }
+        
+        .news-item .date {
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .news-item p {
-            font-size: 0.9rem;
-            color: #757575;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin: 0;
         }
 
+        /* --- Подвал (Footer) --- */
         footer {
-            background-color: var(--green-dark);
-            color: var(--white);
-            padding: 60px 0;
+            background-color: var(--primary-dark-blue);
+            color: var(--primary-light-gray);
+            padding: 80px 0;
             text-align: center;
         }
 
@@ -247,29 +324,64 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
+            gap: 32px;
         }
 
         .footer-logo img {
-            height: 100px;
+            height: 80px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+        
+        .footer-links a {
+            color: var(--primary-light-gray);
+            text-decoration: none;
+            margin: 0 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-green);
         }
 
         .social-links a {
-            color: var(--white);
-            font-size: 1.8rem;
-            margin: 0 15px;
+            color: var(--primary-light-gray);
+            font-size: 1.5rem;
+            margin: 0 16px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-links a:hover {
-            color: var(--green-light);
+            color: var(--accent-green);
             transform: scale(1.1);
         }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 4.5rem; }
+            .values-grid, .news-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu { display: none; } /* Скрытие меню для простоты, в реальном проекте здесь будет бургер-меню */
+            .hero { text-align: center; height: auto; padding: 100px 0; }
+            .hero::before { background: rgba(10, 25, 47, 0.8); }
+            .hero h1 { font-size: 3.5rem; }
+            .hero p { margin: 24px auto 40px; }
+            .section-header h2 { font-size: 3rem; }
+            section { padding: 80px 0; }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.8rem; }
+            .cta-button { display: block; margin: 0 0 16px; }
+        }
+
     </style>
 </head>
 <body>
 
-    <header>
+    <header class="header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
@@ -289,55 +401,69 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero visible">
             <div class="container">
-                <h1>Green-vector — движение за зелёную политику.</h1>
-                <p>Мы работаем над созданием устойчивого и справедливого будущего для всех. Присоединяйтесь к нам, чтобы вместе изменить мир к лучшему!</p>
-                <a href="we.html" class="cta-button">Присоединиться</a>
+                <h1>GREEN-VECTOR:<br>ПОЛИТИКА БУДУЩЕГО</h1>
+                <p>Мы работаем над созданием устойчивого и справедливого мира для всех. Присоединяйтесь к нам, чтобы вместе изменить будущее.</p>
+                <div>
+                    <a href="we.html" class="cta-button">Присоединиться</a>
+                    <a href="Манифест1.html" class="cta-button secondary">Прочитать манифест</a>
+                </div>
             </div>
         </section>
 
-        <section id="values">
+        <section id="values" class="visible">
             <div class="container">
-                <h2>Наши ценности</h2>
+                <div class="section-header">
+                    <h2>НАШИ ЦЕННОСТИ</h2>
+                    <p>Три столпа, на которых строится наша идеология и каждое наше действие.</p>
+                </div>
                 <div class="values-grid">
                     <div class="value-item">
                         <div class="icon"><i class="fas fa-leaf"></i></div>
-                        <h3>Экология</h3>
+                        <h3>ЭКОЛОГИЯ</h3>
                         <p>Мы боремся за сохранение природы и внедрение экологически чистых технологий, чтобы наши дети жили на здоровой планете.</p>
                     </div>
                     <div class="value-item">
                         <div class="icon"><i class="fas fa-balance-scale"></i></div>
-                        <h3>Равенство прав</h3>
+                        <h3>РАВЕНСТВО</h3>
                         <p>Каждый человек имеет право на достоинство, уважение и равные возможности. Мы выступаем против любой дискриминации.</p>
                     </div>
                     <div class="value-item">
                         <div class="icon"><i class="fas fa-venus"></i></div>
-                        <h3>Феминизм</h3>
+                        <h3>ФЕМИНИЗМ</h3>
                         <p>Мы поддерживаем гендерное равенство и боремся за права женщин, создавая общество, где каждый голос имеет значение.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="news">
+        <section id="news" class="visible">
             <div class="container">
-                <h2>Последние новости</h2>
+                <div class="section-header">
+                    <h2>ПОСЛЕДНИЕ НОВОСТИ</h2>
+                </div>
                 <div class="news-grid">
                     <div class="news-item">
-                        <h4>Запуск новой инициативы по переработке пластика</h4>
-                        <p>15 августа 2025</p>
-                        <p>Движение Green-vector объявило о начале кампании по сбору и переработке пластиковых отходов в крупных городах.</p>
+                        <div class="news-content">
+                            <p class="date">15 августа 2025</p>
+                            <h4>Запуск новой инициативы по переработке пластика</h4>
+                            <p>Движение Green-vector объявило о начале кампании по сбору и переработке пластиковых отходов в крупных городах.</p>
+                        </div>
                     </div>
                     <div class="news-item">
-                        <h4>Митинг в поддержку гендерного равенства</h4>
-                        <p>10 августа 2025</p>
-                        <p>Наши активисты приняли участие в митинге, посвященном борьбе за равные права для всех граждан.</p>
+                        <div class="news-content">
+                            <p class="date">10 августа 2025</p>
+                            <h4>Митинг в поддержку гендерного равенства</h4>
+                            <p>Наши активисты приняли участие в митинге, посвященном борьбе за равные права для всех граждан.</p>
+                        </div>
                     </div>
                     <div class="news-item">
-                        <h4>Проведена серия эко-субботников</h4>
-                        <p>5 августа 2025</p>
-                        <p>Мы провели массовые уборки лесов и парков, привлекая сотни волонтёров к нашему делу.</p>
+                        <div class="news-content">
+                            <p class="date">5 августа 2025</p>
+                            <h4>Проведена серия эко-субботников</h4>
+                            <p>Мы провели массовые уборки лесов и парков, привлекая сотни волонтёров к нашему делу.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -351,11 +477,9 @@
                     <img src="rose.png" alt="Роза Лютера">
                 </div>
                 <div class="footer-links">
-                    <p>
-                        <a href="we.html" style="color: var(--white); text-decoration: none;">О нас</a> | 
-                        <a href="#" style="color: var(--white); text-decoration: none;">Контакты</a> | 
-                        <a href="#" style="color: var(--white); text-decoration: none;">Политика конфиденциальности</a>
-                    </p>
+                    <a href="we.html">О нас</a>
+                    <a href="#">Контакты</a>
+                    <a href="#">Политика конфиденциальности</a>
                 </div>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -370,14 +494,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('section');
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, { threshold: 0.2 });
+            }, { threshold: 0.1 });
 
             sections.forEach(section => {
                 observer.observe(section);

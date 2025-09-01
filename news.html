@@ -4,51 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новости — Green-vector</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --green-primary: #2e7d32;
-            --green-dark: #1b5e20;
-            --green-light: #e8f5e9;
-            --gray-text: #424242;
-            --white: #ffffff;
-            --gray-background: #f5f5f5;
+            --primary-dark-blue: #0A192F;
+            --primary-white: #FFFFFF;
+            --primary-light-gray: #F8F9FA;
+            --accent-green: #2E7D32;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --border-color: #E5E7EB;
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--gray-text);
-            background-color: var(--white);
+            color: var(--text-primary);
+            background-color: var(--primary-white);
             line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-        
-        header {
-            background-color: var(--gray-background);
-            padding: 20px 0;
-            border-bottom: 1px solid #e0e0e0;
+
+        /* --- Шапка (Header) --- */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: background-color 0.3s ease;
+            backdrop-filter: blur(8px);
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo img {
-            height: 60px;
+            height: 50px;
         }
 
         .nav-menu ul {
@@ -56,14 +60,17 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 25px;
+            gap: 32px;
         }
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--gray-text);
-            font-weight: 600;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
             position: relative;
+            padding-bottom: 8px;
             transition: color 0.3s ease;
         }
 
@@ -71,94 +78,154 @@
             content: '';
             position: absolute;
             left: 0;
-            bottom: -5px;
+            bottom: 0;
             width: 0;
             height: 2px;
-            background-color: var(--green-primary);
+            background-color: var(--accent-green);
             transition: width 0.3s ease;
         }
 
+        .nav-menu a:hover {
+            color: var(--accent-green);
+        }
+        
         .nav-menu a:hover::after {
             width: 100%;
         }
 
-        /* Стиль для главной секции-заглушки */
-        .coming-soon-section {
+        /* --- Page Header --- */
+        .page-header {
+            padding: 80px 0;
+            background-color: var(--primary-light-gray);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 5rem;
+            color: var(--primary-dark-blue);
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 16px auto 0;
+        }
+
+        /* --- News Section --- */
+        .news-section {
+            padding: 100px 0;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .news-card {
+            background-color: var(--primary-white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--text-primary);
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 180px); /* Вычисляем высоту экрана без шапки и подвала */
-            text-align: center;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
         }
 
-        .typing-container {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--green-dark);
-            position: relative;
-            white-space: nowrap; /* Запрещает перенос строки... */
-            overflow: hidden; /* Скрывает текст, который ещё не напечатан */
-            animation: typing-width 3s steps(27, end) forwards; /* Анимация ширины контейнера */
+        .news-card-image {
+            height: 200px;
+            background-color: var(--text-secondary);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .news-card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
-        .typing-container::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background-color: var(--green-dark);
-            animation: blink-caret 0.75s step-end infinite; /* Анимация мигающего курсора */
+        .news-card-date {
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        
+        .news-card h3 {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.75rem;
+            margin: 0 0 16px;
+            line-height: 1.2;
+        }
+        
+        .news-card p {
+            color: var(--text-secondary);
+            margin: 0;
+            flex-grow: 1;
         }
 
-        /* Анимация ширины для эффекта печатания */
-        @keyframes typing-width {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        /* Анимация мигающего курсора */
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--green-dark); }
-        }
-
+        /* --- Подвал (Footer) --- */
         footer {
-            background-color: var(--green-dark);
-            color: var(--white);
-            padding: 60px 0;
+            background-color: var(--primary-dark-blue);
+            color: var(--primary-light-gray);
+            padding: 80px 0;
             text-align: center;
         }
-
+        
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
+            gap: 32px;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            opacity: 0.9;
+            /* Свойство filter удалено */
         }
         
-        .footer-logo img {
-            height: 100px;
+        .footer-links a {
+            color: var(--primary-light-gray);
+            text-decoration: none;
+            margin: 0 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-green);
         }
 
         .social-links a {
-            color: var(--white);
-            font-size: 1.8rem;
-            margin: 0 15px;
+            color: var(--primary-light-gray);
+            font-size: 1.5rem;
+            margin: 0 16px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-links a:hover {
-            color: var(--green-light);
+            color: var(--accent-green);
             transform: scale(1.1);
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header class="header">
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
@@ -178,9 +245,45 @@
     </header>
 
     <main>
-        <section class="coming-soon-section">
+        <section class="page-header">
             <div class="container">
-                <p class="typing-container">Эта страница будет скоро обновлена!</p>
+                <h1>НОВОСТИ ДВИЖЕНИЯ</h1>
+                <p>Самые свежие и актуальные события из жизни Green-vector.</p>
+            </div>
+        </section>
+        
+        <section class="news-section">
+            <div class="container">
+                <div class="news-grid">
+                    <!-- Пример новости 1 -->
+                    <a href="#" class="news-card">
+                        <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1532601224476-15c79f243a93?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="news-card-content">
+                            <p class="news-card-date">15 августа 2025</p>
+                            <h3>Запуск новой инициативы по переработке пластика</h3>
+                            <p>Движение Green-vector объявило о начале кампании по сбору и переработке пластиковых отходов в крупных городах.</p>
+                        </div>
+                    </a>
+                    <!-- Пример новости 2 -->
+                    <a href="#" class="news-card">
+                        <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1578354382138-028a3985115d?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="news-card-content">
+                            <p class="news-card-date">10 августа 2025</p>
+                            <h3>Митинг в поддержку гендерного равенства</h3>
+                            <p>Наши активисты приняли участие в митинге, посвященном борьбе за равные права для всех граждан.</p>
+                        </div>
+                    </a>
+                    <!-- Пример новости 3 -->
+                    <a href="#" class="news-card">
+                        <div class="news-card-image" style="background-image: url('https://images.unsplash.com/photo-1622384411831-a20a432aa5eb?q=80&w=2070&auto=format&fit=crop');"></div>
+                        <div class="news-card-content">
+                            <p class="news-card-date">5 августа 2025</p>
+                            <h3>Проведена серия эко-субботников</h3>
+                            <p>Мы провели массовые уборки лесов и парков, привлекая сотни волонтёров к нашему делу.</p>
+                        </div>
+                    </a>
+                    <!-- Добавьте больше новостей по аналогии -->
+                </div>
             </div>
         </section>
     </main>
@@ -192,11 +295,9 @@
                     <img src="rose.png" alt="Роза Лютера">
                 </div>
                 <div class="footer-links">
-                    <p>
-                        <a href="we.html" style="color: var(--white); text-decoration: none;">О нас</a> | 
-                        <a href="#" style="color: var(--white); text-decoration: none;">Контакты</a> | 
-                        <a href="#" style="color: var(--white); text-decoration: none;">Политика конфиденциальности</a>
-                    </p>
+                    <a href="we.html">О нас</a>
+                    <a href="#">Контакты</a>
+                    <a href="#">Политика конфиденциальности</a>
                 </div>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
